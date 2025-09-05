@@ -1,0 +1,3 @@
+/mnt/c/Users/Gqgik/Desktop/POLYTECH/MAM4/Projet_debut_annee_cpp/New files (cpp etc)/scripts/build/CMakeFiles/mon_exe.dir
+/mnt/c/Users/Gqgik/Desktop/POLYTECH/MAM4/Projet_debut_annee_cpp/New files (cpp etc)/scripts/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Gqgik/Desktop/POLYTECH/MAM4/Projet_debut_annee_cpp/New files (cpp etc)/scripts/build/CMakeFiles/rebuild_cache.dir
