@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
-project(Exercice3)
+project(Exercice3 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+# Use C++17 (Eigen works with older standards, but C++17 is recommended)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Création d'une librairie statique (libfonctions.a)
-#add_library(fonctions STATIC fonctions.cpp)
+# Try to find an installed Eigen (preferred)
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
-# Création de l’exécutable
 add_executable(mon_exe main.cpp)
 
-# Lier l’exécutable avec la librairie
-#target_link_libraries(mon_exe PRIVATE fonctions)
+# Link Eigen (header-only target sets include directories)
+target_link_libraries(mon_exe PRIVATE Eigen3::Eigen)

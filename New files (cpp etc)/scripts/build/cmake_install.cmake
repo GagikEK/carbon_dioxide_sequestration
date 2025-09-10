@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/Gqgik/Desktop/POLYTECH/MAM4/Projet_debut_annee_cpp/New files (cpp etc)/scripts
+# Install script for directory: /mnt/c/Users/HP/OneDrive/Bureau/projet_cpp/carbon_dioxide_sequestration/New files (cpp etc)/scripts
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/Gqgik/Desktop/POLYTECH/MAM4/Projet_debut_annee_cpp/New files (cpp etc)/scripts/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/HP/OneDrive/Bureau/projet_cpp/carbon_dioxide_sequestration/New files (cpp etc)/scripts/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
