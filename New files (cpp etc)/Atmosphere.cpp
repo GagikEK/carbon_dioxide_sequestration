@@ -8,13 +8,12 @@ Atmosphere::Atmosphere(double CI, double quantite, double alpha, double beta, do
 
 Atmosphere::~Atmosphere() {}
 
-double Atmosphere::update(double CA, double CT, double CS) {
+double Atmosphere::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
     // dCA/dt = -S(CT) + β*CT + δ*CS
-    
-    Arbres Arbre;
-    double sequestration = Arbre.S(CT);       // carbone séquestré par les arbres
-    double respirationArbres = getBeta() * CT;    // respiration des arbres (β * CT)
-    double respirationSol = getDelta() * CS;      // respiration du sol (δ * CS)
+
+    double sequestration = arbre.S(arbre.getQuantite());       // carbone séquestré par les arbres
+    double respirationArbres = getBeta() * arbre.getQuantite();    // respiration des arbres (β * CT)
+    double respirationSol = getDelta() * sol.getQuantite();      // respiration du sol (δ * CS)
 
     double dCA_dt = -sequestration + respirationArbres + respirationSol;
     return dCA_dt;

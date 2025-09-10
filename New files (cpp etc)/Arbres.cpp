@@ -12,13 +12,13 @@ double Arbres::S(double CT) {
     return getAlpha() * CT * (1.0 - CT / getK());
 }
 
-double Arbres::update(double CA, double CT, double CS) {
+double Arbres::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
     // dCT/dt = S(CT) - β*CT - δ*CT - γ*CT
-    
-    double sequestration = S(CT);                 // séquestration par les arbres
-    double respiration = getBeta() * CT;         // respiration des arbres (β * CT)
-    double transfertVersSol = getDelta() * CT;   // transfert vers le sol (δ * CT)
-    double litiere = getGamma() * CT;            // litière (γ * CT)
+
+    double sequestration = S(arbre.getQuantite());                 // séquestration par les arbres
+    double respiration = getBeta() * arbre.getQuantite();         // respiration des arbres (β * CT)
+    double transfertVersSol = getDelta() * arbre.getQuantite();   // transfert vers le sol (δ * CT)
+    double litiere = getGamma() * arbre.getQuantite();            // litière (γ * CT)
 
     double dCT_dt = sequestration - respiration - transfertVersSol - litiere;
     return dCT_dt;
