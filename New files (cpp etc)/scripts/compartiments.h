@@ -4,7 +4,6 @@
 #include <Eigen/Dense>
 #include <iostream>
 
-
 class Compartiments{
     private :
         int quantite;
@@ -35,7 +34,7 @@ class Compartiments{
         void setHistory(const Eigen::VectorXd& history);
 
 
-        '''
+        /*
         proposed by chat :
             // convenient helpers for history manipulation (no large replacements needed)
     void appendHistory(double value);      // push next value (increments history_pos)
@@ -47,7 +46,7 @@ class Compartiments{
         // (optional) an interface intended for polymorphism:
     // virtual void update() = 0;       // uncomment if you want derived classes to implement update()
     // virtual void nextstep() = 0;
-        '''
+       */
 
 
     private:
