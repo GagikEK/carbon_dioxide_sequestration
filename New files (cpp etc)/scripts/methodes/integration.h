@@ -1,7 +1,7 @@
 #ifndef INTEGRATION_H
 #define INTEGRATION_H
-#include <Eigen/Dense>
 
+#include <Eigen/Dense>
 
 class Integration {
     public:

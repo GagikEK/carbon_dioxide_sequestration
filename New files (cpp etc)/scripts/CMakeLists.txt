@@ -12,5 +12,3 @@ add_executable(mon_exe main.cpp)
 
 # Link Eigen (header-only target sets include directories)
 target_link_libraries(mon_exe PRIVATE Eigen3::Eigen)
-
-

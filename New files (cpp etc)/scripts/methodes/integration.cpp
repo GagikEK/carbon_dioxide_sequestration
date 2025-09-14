@@ -14,4 +14,3 @@ Eigen::VectorXd Integration::rectangle_droite(Eigen::VectorXd fn1){
 Eigen::VectorXd Integration::rectangle_gauche(Eigen::VectorXd fn){
     return h * fn;
 }
-
