@@ -1,3 +1,0 @@
-/mnt/c/Users/HP/OneDrive/Bureau/projet_cpp/carbon_dioxide_sequestration/New files (cpp etc)/scripts/build/CMakeFiles/mon_exe.dir
-/mnt/c/Users/HP/OneDrive/Bureau/projet_cpp/carbon_dioxide_sequestration/New files (cpp etc)/scripts/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/HP/OneDrive/Bureau/projet_cpp/carbon_dioxide_sequestration/New files (cpp etc)/scripts/build/CMakeFiles/rebuild_cache.dir
