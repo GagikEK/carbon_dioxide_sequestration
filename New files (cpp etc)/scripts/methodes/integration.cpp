@@ -1,7 +1,6 @@
-#define h 1 //temporaire le temps de créer la class "Simulation"
-
 #include "integration.h"
 
+const double h = 1.0;  //temporaire le temps de créer la class "Simulation"
 
 Eigen::VectorXd Integration::trapeze(Eigen::VectorXd fn, Eigen::VectorXd fn1){
     return h * (fn + fn1)/2; 
