@@ -36,3 +36,17 @@ Eigen::VectorXd Resolution::pointFixe(Eigen::VectorXd C0, Eigen::VectorXd (*F)(E
 
     return Cnk1;
 }
+
+Eigen::VectorXd Resolution::newton(Eigen::VectorXd C0, Eigen::VectorXd (*F)(Eigen::VectorXd), Eigen::MatrixXd (*dF)(Eigen::VectorXd)){
+    Eigen::VectorXd Cnk = C0;
+    for(int i=0 ; i < Resolution::max_iter ; i++){
+        if(F(Cnk).norm() < Resolution::eps){
+            return Cnk;
+        }
+        Cnk = Cnk - dF(Cnk).inverse() * F(Cnk);
+    }
+
+    std::cerr << "Newton : non convergence après " << Resolution::max_iter << " itérations" << std::endl;
+
+    return Cnk;
+}
