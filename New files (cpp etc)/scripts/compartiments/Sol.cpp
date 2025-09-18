@@ -11,7 +11,7 @@ Sol::Sol(const Sol& sol) : Compartiments(sol){
 
 Sol::~Sol() {}
 
-double Sol::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
+double Sol::update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean){
     // dCs/dt =  _gamma*CT - delta*CS + delta*CT
 
     double litière = getGamma()*arbre.getQuantite();     // litière (γ * CT)
