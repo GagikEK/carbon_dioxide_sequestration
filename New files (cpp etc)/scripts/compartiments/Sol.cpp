@@ -1,10 +1,13 @@
-#include "Sol.h"
-#include "arbres.h"
+#include "Compartiments.h"
 
 Sol::Sol() : Compartiments(), CI(0.0) {}
 
 Sol::Sol(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}
+
+Sol::Sol(const Sol& sol) : Compartiments(sol){
+    this->CI = sol.CI;
+}
 
 Sol::~Sol() {}
 

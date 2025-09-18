@@ -1,28 +1,38 @@
-#include "Humains.h"
-#include "arbres.h"
-#include <cmath> 
+#include "Compartiments.h"
 
-Humains::Humains() : Compartiments(), CI(0.0),to(0.0),t(0.0) {}
+Humains::Humains() : Compartiments() {
+    this->t0 = 2024; 
+    this->t = 2024; 
+    this->CI = exp(this->getA()*this->getT0() + this->getB())/1000000000;
+}
 
 Humains::Humains(double CI,double t0, double t, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
-    : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), to(to),t(t) {}
+    : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), t0(t0),t(t) {}
+
+Humains::Humains(const Humains& humains) : Compartiments(humains) {
+    this->t0 = humains.t0;
+    this->t = humains.t;
+    this->a = humains.getA();
+    this->b = humains.getB();
+    this->CI = humains.CI;
+}
 
 Humains::~Humains() {}
 
-static double Humains::getA(){
+double Humains::getA(){
     return a;
 }
-static double Humains::getB(){
-    return B;
+double Humains::getB(){
+    return b;
 }
 double Humains::getT(){
     return t;
 }
-double Humains::getT0(){
+double Humains::getT0() {
     return t0;
 }
-double Humains::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
+double Humains::update(){
  
-    double CHT = exp(humain.getA()*humain.getT() + humain.getB())/1000000000;
+    double CHT = exp(this->getA()*this->getT() + this->getB())/1000000000;
     return CHT;
 }

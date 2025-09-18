@@ -1,4 +1,4 @@
-#include "compartiments.h"
+#include "Compartiments.h"
 
 // Initialize static members
 double Compartiments::alpha = 0.04;
@@ -8,7 +8,6 @@ double Compartiments::delta = 0.008;
 double Compartiments::K = 900;
 
 Compartiments::Compartiments() : quantite(0.0), history_pos(0) {
-    std::cout << "CREATION" << std::endl;
     this->history = Eigen::VectorXd::Zero(100);
 }
 
@@ -21,6 +20,18 @@ Compartiments::Compartiments(double quantite, double alpha, double beta, double 
     Compartiments::K = k;
     this->history = Eigen::VectorXd::Zero(taille);
 }
+
+Compartiments::Compartiments(const Compartiments& compartiments){
+    this->alpha = compartiments.getAlpha();
+    this->beta = compartiments.getBeta();
+    this->_gamma = compartiments.getGamma();
+    this->delta = compartiments.getDelta();
+    this->K = compartiments.getK();
+    this->history = compartiments.getHistory();
+    this->history_pos = compartiments.history_pos;
+    this->quantite = compartiments.getQuantite();
+}
+
 
 double Compartiments::getQuantite() const {
     return this->quantite;

@@ -1,9 +1,13 @@
-#include "arbres.h"
+#include "Compartiments.h"
 
 Arbres::Arbres() : Compartiments(), CI(0.0) {}
 
 Arbres::Arbres(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}
+
+Arbres::Arbres(const Arbres& arbres) : Compartiments(arbres) {
+    this->CI = arbres.CI;
+}
 
 Arbres::~Arbres() {}
 
@@ -12,7 +16,7 @@ double Arbres::S(double CT) {
     return getAlpha() * CT * (1.0 - CT / getK());
 }
 
-double Arbres::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
+double Arbres::update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean){
     // dCT/dt = S(CT) - β*CT - δ*CT - γ*CT
 
     double sequestration = S(arbre.getQuantite());                 // séquestration par les arbres
