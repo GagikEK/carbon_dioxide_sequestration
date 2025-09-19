@@ -1,5 +1,8 @@
 #include "Compartiments.h"
 
+double a = 0.022863115449118603;
+double b = -21.769830005922582;
+
 Humains::Humains() : Compartiments() {
     this->t0 = 2024; 
     this->t = 2024; 

@@ -1,14 +1,14 @@
 #include "Compartiments.h"
 
 // Initialize static members
-double Compartiments::alpha = 0.04;
+double Compartiments::alpha = 0.004;
 double Compartiments::beta = 0.02;
 double Compartiments::_gamma = 0.015;
 double Compartiments::delta = 0.008;
 double Compartiments::K = 900;
 
 Compartiments::Compartiments() : quantite(0.0), history_pos(0) {
-    this->history = Eigen::VectorXd::Zero(100);
+    this->history = Eigen::VectorXd::Zero(77); //si on ne met rien, on va de 2024 à 2100
 }
 
 Compartiments::Compartiments(double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)

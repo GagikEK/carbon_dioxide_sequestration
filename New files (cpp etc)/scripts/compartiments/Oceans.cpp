@@ -5,7 +5,7 @@ double alpha2 = 0.001;
 double k2 = 40000;
 
 
-Oceans::Oceans() : Compartiments(), CI(0.0) {}
+Oceans::Oceans() : Compartiments(), CI(40000) {}
 
 Oceans::Oceans(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}

@@ -1,6 +1,6 @@
 #include "Compartiments.h"
 
-Sol::Sol() : Compartiments(), CI(0.0) {}
+Sol::Sol() : Compartiments(), CI(490.77) {}
 
 Sol::Sol(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}

@@ -1,6 +1,6 @@
 #include "Compartiments.h"
 
-Atmosphere::Atmosphere() : Compartiments(), CI(0.0) {}
+Atmosphere::Atmosphere() : Compartiments(), CI(3306.296) {}
 
 Atmosphere::Atmosphere(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}

@@ -24,8 +24,7 @@ public:
 
     // Pure virtual method for updating compartment
     virtual double update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean) = 0;
-    virtual double S(double quantite){ return 0.0; }
-
+    virtual double S(double quantite) const = 0 ; 
 
     // Getters
     double getQuantite() const;
@@ -91,7 +90,7 @@ public:
     ~Arbres();
 
     double update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean) override;
-    double S(double CT) override;  // Sequestration function
+    double S(double CT) const override;  // Sequestration function
 
     friend class Atmosphere;
     friend class Sol;
