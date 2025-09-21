@@ -5,9 +5,10 @@
 
 class Integration {
     public:
-        static Eigen::VectorXd trapeze(Eigen::VectorXd fn, Eigen::VectorXd fn1);
-        static Eigen::VectorXd rectangle_gauche(Eigen::VectorXd fn);
-        static Eigen::VectorXd rectangle_droite(Eigen::VectorXd fn1);
+    // integration rules take function values and timestep h
+    static Eigen::VectorXd trapeze(const Eigen::VectorXd& fn, const Eigen::VectorXd& fn1, double h);
+    static Eigen::VectorXd rectangle_gauche(const Eigen::VectorXd& fn, double h);
+    static Eigen::VectorXd rectangle_droite(const Eigen::VectorXd& fn1, double h);
 
 };
 

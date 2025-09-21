@@ -1,6 +1,9 @@
 #include "Compartiments.h"
 
-Arbres::Arbres() : Compartiments(), CI(370.23) {}
+Arbres::Arbres() : Compartiments(){
+    this->CI = 370.23;
+    this->quantite = this->CI;
+}
 
 Arbres::Arbres(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}

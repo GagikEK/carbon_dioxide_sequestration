@@ -4,7 +4,6 @@
 #include <Eigen/Dense>
 #include <cmath>
 
-
 class Compartiments {
 protected:
     double quantite;
@@ -69,6 +68,7 @@ public:
     ~Atmosphere();
 
     double update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean) override;
+    double S(double CT) const override;
 
     friend class Arbres;
     friend class Sol;
@@ -90,7 +90,7 @@ public:
     ~Arbres();
 
     double update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean) override;
-    double S(double CT) const override;  // Sequestration function
+    double S(double CT) const override;
 
     friend class Atmosphere;
     friend class Sol;
@@ -112,6 +112,7 @@ public:
     ~Sol();
 
     double update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean) override;
+    double S(double CT) const override;
 
     friend class Atmosphere;
     friend class Sol;
@@ -136,7 +137,7 @@ public:
     ~Oceans();
 
     double update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean) override;
-    double S(double CT) override;
+    double S(double CT) const override;
 
     friend class Arbres;
     friend class Sol;
@@ -161,10 +162,11 @@ public:
     
     ~Humains();
 
-    double update();
+    double update(const Compartiments& arbre, const Compartiments& sol, const Compartiments& atmosphere, const Compartiments& humain, const Compartiments& ocean) override;
+    double S(double CT) const override;
 
-    double getT0();
-    double getT();
+    double getT0() const;
+    double getT() const;
     static double getA();
     static double getB();
 

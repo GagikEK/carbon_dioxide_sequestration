@@ -1,11 +1,14 @@
 #include "Compartiments.h"
 
-double omega = 0.0003;
-double alpha2 = 0.001;
-double k2 = 40000;
+double Oceans::omega = 0.0003;
+double Oceans::alpha2 = 0.001;
+double Oceans::k2 = 40000.0;
 
 
-Oceans::Oceans() : Compartiments(), CI(40000) {}
+Oceans::Oceans() : Compartiments(){
+    this->CI = 40000.0;
+    this->quantite = this->CI;
+}
 
 Oceans::Oceans(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}
@@ -19,7 +22,7 @@ Oceans::Oceans(const Oceans& oceans) : Compartiments(oceans){
 
 Oceans::~Oceans() {}
 
-double Oceans::S(double Co) {
+double Oceans::S(double Co) const {
     // S(CT) = α * CT * (1 - CT/K)
     return alpha2 * Co * (1.0 - Co / k2);
 }

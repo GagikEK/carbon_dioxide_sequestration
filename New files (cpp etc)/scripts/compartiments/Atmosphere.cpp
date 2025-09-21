@@ -1,6 +1,9 @@
 #include "Compartiments.h"
 
-Atmosphere::Atmosphere() : Compartiments(), CI(3306.296) {}
+Atmosphere::Atmosphere() : Compartiments(){
+    this->CI = 3306.296;
+    this->quantite = this->CI;
+}
 
 Atmosphere::Atmosphere(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}
@@ -20,4 +23,8 @@ double Atmosphere::update(const Compartiments& arbre, const Compartiments& sol, 
 
     double dCA_dt = -sequestration + respirationArbres + respirationSol;
     return dCA_dt;
+}
+
+double Atmosphere::S(double CT) const{
+    return 0;
 }

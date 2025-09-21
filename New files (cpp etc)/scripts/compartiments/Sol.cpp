@@ -1,6 +1,9 @@
 #include "Compartiments.h"
 
-Sol::Sol() : Compartiments(), CI(490.77) {}
+Sol::Sol() : Compartiments(), CI(490.77) {
+    this->CI = 490.77;
+    this->quantite = this->CI;
+}
 
 Sol::Sol(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
     : Compartiments(quantite, alpha, beta, gamma, delta, k, taille), CI(CI) {}
@@ -20,4 +23,8 @@ double Sol::update(const Compartiments& arbre, const Compartiments& sol, const C
     
     double dCS_dt = litière + respirationSol + transfertVersSol;
     return dCS_dt;
+}
+
+double Sol::S(double CT) const {
+    return 0;
 }
