@@ -8,7 +8,7 @@ Sol::Sol(double CI, double quantite, double alpha, double beta, double gamma, do
 
 Sol::~Sol() {}
 
-double Sol::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
+double Sol::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) {
     // dCs/dt =  _gamma*CT - delta*CS + delta*CT
 
     double litière = getGamma()*arbre.getQuantite();     // litière (γ * CT)

@@ -2,60 +2,115 @@
 #define Simulation_H
 
 #include <Eigen/Dense>
+#include <functional>
+#include <vector>
+
+// compartment headers (relative path from scripts/simulation)
+#include "../compartiments/Arbres.h"
+#include "../compartiments/Atmosphere.h"
+#include "../compartiments/Sol.h"
+#include "../compartiments/Oceans.h"
+#include "../compartiments/Humains.h"
+
+// base/default right-hand-side function signature
+Eigen::VectorXd f_base(double tn, const Eigen::VectorXd& Cn);
 
 class Simulation {
-    private:
+private:
+    // Concrete compartment objects (use the plural class names defined in headers)
+    Arbres arbre;
+    Oceans ocean;
+    Humains humain;
+    Sol sol;
+    Atmosphere atmosphere;
+
+    // Numerical / control parameters
+    int max_iter{10000};        // maximum iterations for nonlinear solves (if used)
+    double eps{1e-6};           // tolerance for iterative solvers
+    double h{1.0};              // timestep size
+
+    // time / initial conditions
+    Eigen::VectorXd C0;         // initial state vector
+    double t0{0.0};
+    double tf{0.0};
+
+    // history storage: rows = time steps, cols = state size
+    Eigen::MatrixXd global_history;
+    Eigen::VectorXd C;         // current system state
+    int current_pos{0};
+    Eigen::VectorXd time_vector; // store times corresponding to history rows
+
+    // user-provided right-hand-side function (takes time and state by const-ref)
+    std::function<Eigen::VectorXd(double, const Eigen::VectorXd&)> f;
+
+    // helper: number of time steps (computed from t0, tf and h)
+    int nb_pas() const;
+
+public:
+    enum class Integrator { pointFixe, newton, trapeze, rectangle_gauche, rectangle_droite };
+
+private:
+    // selected integrator (declared after enum)
+    Integrator integrator_{Integrator::rectangle_gauche};
     
-        int max_iter;
-        double eps;
-        double h;
-        
-        Eigen::VectorXd C0;
-        double t0;
-        double tf;
+    // set/get integrator
+    void setIntegrator(Integrator integrator_);
+    Integrator getIntegrator() const;
 
-        Eigen::MatrixXd global_history;
-        Eigen::VectorXd C;
-        int current_pos;
+public:
+    // ctors / dtor
+    Simulation();
+    Simulation(const Eigen::VectorXd& C0,
+               double t0,
+               double tf,
+               double h,
+               int max_iter = 10000,
+               double eps = 1e-6,
+               const Arbres& arbre = Arbres(),
+               const Sol& sol = Sol(),
+               const Atmosphere& atmosphere = Atmosphere(),
+               const Humains& humain = Humains(),
+               const Oceans& ocean = Oceans());
+    ~Simulation();
 
-        Eigen::VectorXd (*f)(double tn, Eigen::VectorXd Cn);
+    // choose the RHS function used by the integrator
+    void setSimulationMethod(const std::function<Eigen::VectorXd(double, const Eigen::VectorXd&)>& func);
 
-        int nb_pas();
+    // run the simulation (will fill global_history)
+    void run();
 
-    public:
-        Simulation();
-        Simulation(Eigen::VectorXd C0, double t0, double tf, double h, int max_iter=10000, double eps=1e-6);
-        ~Simulation();
+    // Export history to CSV
+    void exportHistoryCSV(const std::string& filename) const;
 
+    // getters / setters (const-correct, avoid copies where sensible)
+    int getMaxIter() const;
+    void setMaxIter(int max_iter);
 
-        int getMaxIter();
-        void setMaxIter(int max_iter);
+    double getTolerance() const;
+    void setTolerance(double eps);
 
-        double getTolerance();
-        void setTolerance(double eps);
+    double getStepSize() const;
+    void setStepSize(double h);
 
-        int getPas();
-        void setPas(double h);
+    const Eigen::VectorXd& getCondInitial() const;
+    void setCondInitial(const Eigen::VectorXd& C0);
 
-        Eigen::VectorXd getCondInitial();
-        void setCondInitial(Eigen::VectorXd C0);
+    double getSimulBeginTime() const;
+    void setSimulBeginTime(double t0);
 
-        double getSimulBeginTime();
-        void setSimulBeginTime(double t0);
+    double getSimulTime() const; // current simulation time
+    void setSimulTime(double t);
 
-        double getSimulTime();
-        void setSimulTime(double t);
+    double getSimulEndTime() const;
+    void setSimulEndTime(double tf);
 
-        double getSimulEndTime();
-        void setSimulEndTime(double tf);
+    const Eigen::MatrixXd& getSimulHistory() const;
 
-        Eigen::MatrixXd getSimulHistory();
+    const Eigen::VectorXd& getSystemState() const;
+    void setSystemState(const Eigen::VectorXd& C);
 
-        Eigen::VectorXd getSystemState();
-        void setSystemState(Eigen::VectorXd C);
-
-        void setSimulFunction(Eigen::VectorXd (*f)(double t, Eigen::VectorXd));
-
+    // convenience: set RHS using raw function pointer too
+    void setSimulFunction(Eigen::VectorXd (*fp)(double, const Eigen::VectorXd&));
 };
 
 #endif

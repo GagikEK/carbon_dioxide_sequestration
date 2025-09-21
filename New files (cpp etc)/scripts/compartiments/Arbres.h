@@ -15,7 +15,7 @@ public:
     ~Arbres();
 
     double update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override;
-    double S(double CT);  // Sequestration function
+    double S(double CT) const;  // Sequestration function
 
     friend class Atmosphere;
     friend class Sol;

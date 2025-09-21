@@ -1,0 +1,22 @@
+# Local gitignore alternative (if .gitignore cannot be edited)
+.vscode
+
+# CMake/build artifacts
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+mon_exe
+*.o
+*.obj
+*.exe
+
+# Editor and OS files
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Generated CSV (optional)
+sim_history.csv

@@ -1,5 +1,10 @@
 #include "Oceans.h"
 
+// static member definitions
+double Oceans::omega = 0.0003;
+double Oceans::alpha2 = 0.001;
+double Oceans::k2 = 40000.0;
+
 Oceans::Oceans() : Compartiments(), CI(0.0) {}
 
 Oceans::Oceans(double CI, double quantite, double alpha, double beta, double gamma, double delta, double k, int taille)
@@ -7,16 +12,16 @@ Oceans::Oceans(double CI, double quantite, double alpha, double beta, double gam
 
 Oceans::~Oceans() {}
 
-double Oceans::S2(double Co) {
+double Oceans::S2(double Co) const {
     // S(CT) = α * CT * (1 - CT/K)
     return alpha2 * Co * (1.0 - Co / k2);
 }
 
 
-double Oceans::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
+double Oceans::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) {
     // dCo/dt =  epsilon*CA - omega*CO
 
-    double sequestration = S(ocean.getQuantite());    // le taux de séquestration du carbone dans l’océean
+    double sequestration = S2(ocean.getQuantite());    // le taux de séquestration du carbone dans l’océean
     double effet_resp = omega*ocean.getQuantite();          //effet de respiration de l’océan vers l’atmosphère
     double dCo_dt = sequestration -effet_resp;
     return dCo_dt;

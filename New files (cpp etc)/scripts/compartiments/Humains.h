@@ -20,15 +20,14 @@ public:
 
     double update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override;
 
-    double getT0();
-    double getT();
+    double getT0() const;
+    double getT() const;
     static double getA();
     static double getB();
 
     friend class Arbres;
     friend class Sol;
     friend class Oceans;
-    friend class Humains;
 };
 
 #endif

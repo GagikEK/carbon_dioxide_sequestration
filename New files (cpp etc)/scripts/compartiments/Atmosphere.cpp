@@ -1,5 +1,6 @@
 #include "atmosphere.h"
 #include "arbres.h"
+#include "Sol.h"
 
 Atmosphere::Atmosphere() : Compartiments(), CI(0.0) {}
 
@@ -8,7 +9,7 @@ Atmosphere::Atmosphere(double CI, double quantite, double alpha, double beta, do
 
 Atmosphere::~Atmosphere() {}
 
-double Atmosphere::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
+double Atmosphere::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) {
     // dCA/dt = -S(CT) + β*CT + δ*CS
 
     double sequestration = arbre.S(arbre.getQuantite());       // carbone séquestré par les arbres

@@ -7,12 +7,12 @@ Arbres::Arbres(double CI, double quantite, double alpha, double beta, double gam
 
 Arbres::~Arbres() {}
 
-double Arbres::S(double CT) {
+double Arbres::S(double CT) const {
     // S(CT) = α * CT * (1 - CT/K)
     return getAlpha() * CT * (1.0 - CT / getK());
 }
 
-double Arbres::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) override {
+double Arbres::update(const Arbres& arbre, const Sol& sol, const Atmosphere& atmosphere, const Humains& humain, const Oceans& ocean) {
     // dCT/dt = S(CT) - β*CT - δ*CT - γ*CT
 
     double sequestration = S(arbre.getQuantite());                 // séquestration par les arbres

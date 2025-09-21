@@ -1,15 +1,13 @@
 #include "integration.h"
 
-const double h = 1.0;  //temporaire le temps de créer la class "Simulation"
-
-Eigen::VectorXd Integration::trapeze(Eigen::VectorXd fn, Eigen::VectorXd fn1){
-    return h * (fn + fn1)/2; 
+Eigen::VectorXd Integration::trapeze(const Eigen::VectorXd& fn, const Eigen::VectorXd& fn1, double h){
+    return h * (fn + fn1) / 2.0;
 }
 
-Eigen::VectorXd Integration::rectangle_droite(Eigen::VectorXd fn1){
+Eigen::VectorXd Integration::rectangle_droite(const Eigen::VectorXd& fn1, double h){
     return h * fn1;
 }
 
-Eigen::VectorXd Integration::rectangle_gauche(Eigen::VectorXd fn){
+Eigen::VectorXd Integration::rectangle_gauche(const Eigen::VectorXd& fn, double h){
     return h * fn;
 }

@@ -4,6 +4,13 @@
 #include <Eigen/Dense>
 #include <iostream>
 
+// forward declarations for compartment classes used in method signatures
+class Arbres;
+class Atmosphere;
+class Sol;
+class Oceans;
+class Humains;
+
 class Compartiments {
 private:
     double quantite;
